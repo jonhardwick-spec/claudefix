@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="280" viewBox="0 0 800 280">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a12"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00bfff;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#00bfff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00bfff;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#12121f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="280" fill="url(#bgGrad)"/>
+
+  <g opacity="0.02">
+    <line x1="200" y1="0" x2="200" y2="280" stroke="#00bfff"/>
+    <line x1="400" y1="0" x2="400" y2="280" stroke="#00bfff"/>
+    <line x1="600" y1="0" x2="600" y2="280" stroke="#00bfff"/>
+  </g>
+
+  <text x="400" y="35" text-anchor="middle"
+        font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#00bfff">What It Fixes</text>
+  <rect x="250" y="45" width="300" height="1" fill="url(#accentLine)"/>
+
+  <!-- Card 1: VTE -->
+  <g transform="translate(30, 65)">
+    <rect x="0" y="0" width="170" height="190" rx="8" fill="url(#cardBg)" stroke="#00bfff" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="85" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#00bfff">&#9638;</text>
+    <text x="85" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#00bfff">VTE Color Glitch</text>
+    <text x="85" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">Background colors</text>
+    <text x="85" y="100" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">drawn on top of text</text>
+    <text x="85" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">in Linux terminals.</text>
+    <rect x="20" y="130" width="130" height="1" fill="#00bfff" opacity="0.1"/>
+    <text x="85" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">Strips ANSI BG codes</text>
+    <text x="85" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">from compound sequences</text>
+  </g>
+
+  <!-- Card 2: Scrollback -->
+  <g transform="translate(215, 65)">
+    <rect x="0" y="0" width="170" height="190" rx="8" fill="url(#cardBg)" stroke="#00bfff" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="85" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#00bfff">&#8645;</text>
+    <text x="85" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#00bfff">Scrollback Bloat</text>
+    <text x="85" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">Terminal grinds to a</text>
+    <text x="85" y="100" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">halt after long Claude</text>
+    <text x="85" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">sessions. Buffer grows.</text>
+    <rect x="20" y="130" width="130" height="1" fill="#00bfff" opacity="0.1"/>
+    <text x="85" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">Periodic \x1b[3J clear</text>
+    <text x="85" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">every 500 renders/60s</text>
+  </g>
+
+  <!-- Card 3: Resize -->
+  <g transform="translate(400, 65)">
+    <rect x="0" y="0" width="170" height="190" rx="8" fill="url(#cardBg)" stroke="#00bfff" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="85" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#00bfff">&#8596;</text>
+    <text x="85" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#00bfff">Resize Thrashing</text>
+    <text x="85" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">tmux/screen users get</text>
+    <text x="85" y="100" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">rapid SIGWINCH events</text>
+    <text x="85" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">that crash rendering.</text>
+    <rect x="20" y="130" width="130" height="1" fill="#00bfff" opacity="0.1"/>
+    <text x="85" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">Debounced SIGWINCH</text>
+    <text x="85" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">batched resize events</text>
+  </g>
+
+  <!-- Card 4: Memory -->
+  <g transform="translate(585, 65)">
+    <rect x="0" y="0" width="170" height="190" rx="8" fill="url(#cardBg)" stroke="#00bfff" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="85" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#00bfff">&#9881;</text>
+    <text x="85" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#00bfff">Memory Leaks</text>
+    <text x="85" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">Long running sessions</text>
+    <text x="85" y="100" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">accumulate memory from</text>
+    <text x="85" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8892a0">uncleaned buffers.</text>
+    <rect x="20" y="130" width="130" height="1" fill="#00bfff" opacity="0.1"/>
+    <text x="85" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">Active cleanup on PTY</text>
+    <text x="85" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#27c93f">output buffer rotation</text>
+  </g>
+
+  <rect x="0" y="0" width="800" height="280" fill="none" stroke="#00bfff" stroke-width="1" stroke-opacity="0.1"/>
+</svg>

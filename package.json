@@ -1,0 +1,53 @@
+{
+  "name": "claudefix",
+  "version": "2.7.2",
+  "description": "Fixes screen glitching, blocky colors, AND MEMORY LEAKS in Claude Code CLI on Linux and macOS. All features optional via env vars. Shows config options on install. Developed by Hardwick Software Services @ https://justcalljon.pro",
+  "main": "index.cjs",
+  "bin": {
+    "claude-fixed": "bin/claude-fixed.js",
+    "claudefix": "bin/claudefix-cli.js"
+  },
+  "scripts": {
+    "preinstall": "node preinstall.cjs",
+    "postinstall": "node install-hook.cjs"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "terminal",
+    "fix",
+    "linux",
+    "vte",
+    "screen-glitch",
+    "color-fix",
+    "ansi",
+    "cli"
+  ],
+  "author": "Hardwick Software Services <jonathan.m.hardwick@gmail.com> (https://justcalljon.pro)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonhardwick-spec/claudefix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonhardwick-spec/claudefix/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "node-pty": "^1.0.0"
+  },
+  "files": [
+    "index.cjs",
+    "loader.cjs",
+    "preinstall.cjs",
+    "install-hook.cjs",
+    "setup-interactive.cjs",
+    "install.sh",
+    "bin/",
+    "vendor/",
+    "README.md",
+    "LICENSE"
+  ]
+}

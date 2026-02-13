@@ -1,0 +1,9 @@
+# Tarballs
+*.tgz
+
+# Runtime dirs
+specmem/
+node_modules/
+
+# Logs
+*.log

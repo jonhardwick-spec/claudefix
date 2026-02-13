@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a12"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00bfff;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#00bfff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00bfff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="200" fill="url(#bgGrad)"/>
+
+  <text x="400" y="35" text-anchor="middle"
+        font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#00bfff">"Is This Safe?"</text>
+  <rect x="250" y="45" width="300" height="1" fill="url(#accentLine)"/>
+
+  <text x="400" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#8892a0">
+    It strips ANSI codes from terminal output. That's the whole thing.
+  </text>
+
+  <g transform="translate(80, 95)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#27c93f">&#10003;</text>
+    <text x="20" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#8892a0">MIT licensed. Read every line of source.</text>
+  </g>
+  <g transform="translate(80, 118)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#27c93f">&#10003;</text>
+    <text x="20" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#8892a0">No network calls. No telemetry. No data collection.</text>
+  </g>
+  <g transform="translate(80, 141)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#27c93f">&#10003;</text>
+    <text x="20" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#8892a0">Single dependency: node-pty (official terminal bindings).</text>
+  </g>
+  <g transform="translate(80, 164)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#27c93f">&#10003;</text>
+    <text x="20" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#8892a0">Optional root. Don't want root? Use claude-fixed directly. Done.</text>
+  </g>
+
+  <rect x="0" y="0" width="800" height="200" fill="none" stroke="#00bfff" stroke-width="1" stroke-opacity="0.1"/>
+</svg>

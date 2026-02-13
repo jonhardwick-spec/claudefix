@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+/**
+ * claudefix wrapper - fixes screen glitching, blocky colors, AND MEMORY LEAKS on Linux
+ *
+ * FIXES:
+ * 1. VTE rendering glitches (strips problematic ANSI background colors)
+ * 2. Memory leak in Claude's Ink TUI (limits V8 heap to 35% of RAM)
+ *    - Root cause: v8::Value::StrictEquals creates handles faster than GC
+ *    - Without fix: 500MB+ memory growth per minute!
+ *
+ * Developed by Hardwick Software Services @ https://justcalljon.pro
+ */
+const { spawn } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+const os = require('os');
+
+const VERSIONS_DIR = path.join(os.homedir(), '.local/share/claude/versions');
+const CLAUDEFIX_SCRIPT = '/usr/lib/node_modules/claudefix/bin/claude-fixed.js'; // Absolute path set at install time
+
+// Memory limit: 35% of total RAM
+const TOTAL_MB = Math.floor(os.totalmem() / 1024 / 1024);
+const MAX_HEAP = Math.floor(TOTAL_MB * 0.35);
+
+function findClaude() {
+  // 1. Check versions directory (self-updating claude)
+  if (fs.existsSync(VERSIONS_DIR)) {
+    try {
+      const versions = fs.readdirSync(VERSIONS_DIR)
+        .filter(v => /^\d+\.\d+\.\d+$/.test(v))
+        .sort((a, b) => {
+          const [aMaj, aMin, aPat] = a.split('.').map(Number);
+          const [bMaj, bMin, bPat] = b.split('.').map(Number);
+          return bMaj - aMaj || bMin - aMin || bPat - aPat;
+        });
+      if (versions.length) {
+        return path.join(VERSIONS_DIR, versions[0]);
+      }
+    } catch (e) {}
+  }
+
+  // 2. Check npm global install locations
+  const npmLocations = [
+    '/usr/bin/claude',
+    '/usr/local/bin/claude-real',  // In case we renamed the original
+    path.join(os.homedir(), '.local/bin/claude'),
+    path.join(os.homedir(), '.npm-global/bin/claude'),
+  ];
+  for (const loc of npmLocations) {
+    if (fs.existsSync(loc)) {
+      try {
+        const content = fs.readFileSync(loc, 'utf8').slice(0, 500);
+        if (!content.includes('claudefix') && !content.includes('Hardwick')) {
+          return loc;
+        }
+      } catch (e) {
+        return loc;  // Can't read, might be binary
+      }
+    }
+  }
+
+  console.error('No Claude installation found');
+  process.exit(1);
+}
+
+const bin = findClaude();
+const isLinux = process.platform === 'linux';
+const disabled = process.env.CLAUDEFIX_DISABLED === '1';
+
+if (!isLinux || disabled) {
+  // Not Linux or explicitly disabled - run claude directly
+  const c = spawn(bin, process.argv.slice(2), { stdio: 'inherit' });
+  c.on('exit', code => process.exit(code || 0));
+} else {
+  // Linux - apply PTY color filter AND memory limits
+  process.env.CLAUDE_REAL_BINARY = bin;
+  process.env.NODE_OPTIONS = (process.env.NODE_OPTIONS || '') + ' --max-old-space-size=' + MAX_HEAP;
+  try { require(CLAUDEFIX_SCRIPT); }
+  catch (e) {
+    // Fallback: run with memory limits at minimum
+    const c = spawn(bin, process.argv.slice(2), {
+      stdio: 'inherit',
+      env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=' + MAX_HEAP }
+    });
+    c.on('exit', code => process.exit(code || 0));
+  }
+}

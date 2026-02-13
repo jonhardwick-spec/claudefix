@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="260" viewBox="0 0 800 260">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a12"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00bfff;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#00bfff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00bfff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="260" fill="url(#bgGrad)"/>
+
+  <g opacity="0.02">
+    <line x1="200" y1="0" x2="200" y2="260" stroke="#00bfff"/>
+    <line x1="400" y1="0" x2="400" y2="260" stroke="#00bfff"/>
+    <line x1="600" y1="0" x2="600" y2="260" stroke="#00bfff"/>
+  </g>
+
+  <text x="400" y="35" text-anchor="middle"
+        font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#00bfff">Two Ways to Run It</text>
+  <rect x="250" y="45" width="300" height="1" fill="url(#accentLine)"/>
+
+  <!-- Option 1: Wrapper -->
+  <g transform="translate(60, 70)">
+    <rect x="0" y="0" width="310" height="160" rx="8" fill="#1a1a2e" stroke="#27c93f" stroke-width="1" stroke-opacity="0.4"/>
+    <rect x="0" y="0" width="310" height="30" rx="8" fill="#27c93f" opacity="0.08"/>
+    <text x="155" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#27c93f">Option A: Wrapper (no root needed)</text>
+    <text x="20" y="55" font-family="monospace" font-size="12" fill="#8892a0">$ npm install -g claudefix</text>
+    <text x="20" y="78" font-family="monospace" font-size="12" fill="#8892a0">$ claude-fixed</text>
+    <rect x="20" y="92" width="270" height="1" fill="#00bfff" opacity="0.1"/>
+    <text x="20" y="115" font-family="system-ui, sans-serif" font-size="11" fill="#5a6070">Runs Claude through a PTY wrapper.</text>
+    <text x="20" y="132" font-family="system-ui, sans-serif" font-size="11" fill="#5a6070">No system changes. Use claude-fixed</text>
+    <text x="20" y="149" font-family="system-ui, sans-serif" font-size="11" fill="#5a6070">instead of claude. That's it.</text>
+  </g>
+
+  <!-- Option 2: Root -->
+  <g transform="translate(430, 70)">
+    <rect x="0" y="0" width="310" height="160" rx="8" fill="#1a1a2e" stroke="#00bfff" stroke-width="1" stroke-opacity="0.4"/>
+    <rect x="0" y="0" width="310" height="30" rx="8" fill="#00bfff" opacity="0.08"/>
+    <text x="155" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#00bfff">Option B: Root install (auto-patch)</text>
+    <text x="20" y="55" font-family="monospace" font-size="12" fill="#8892a0">$ sudo npm install -g claudefix</text>
+    <text x="20" y="78" font-family="monospace" font-size="12" fill="#8892a0">$ claude  # just works</text>
+    <rect x="20" y="92" width="270" height="1" fill="#00bfff" opacity="0.1"/>
+    <text x="20" y="115" font-family="system-ui, sans-serif" font-size="11" fill="#5a6070">Patches the claude binary loader.</text>
+    <text x="20" y="132" font-family="system-ui, sans-serif" font-size="11" fill="#5a6070">Regular claude command works with</text>
+    <text x="20" y="149" font-family="system-ui, sans-serif" font-size="11" fill="#5a6070">fixes applied. npm or native binary.</text>
+  </g>
+
+  <rect x="0" y="0" width="800" height="260" fill="none" stroke="#00bfff" stroke-width="1" stroke-opacity="0.1"/>
+</svg>
